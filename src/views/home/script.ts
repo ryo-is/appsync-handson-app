@@ -1,30 +1,33 @@
 import Vue from "vue"
+import dayjs from "dayjs"
+import { API, graphqlOperation } from "aws-amplify"
 import { HomeComponentState } from "@/types"
-import { flagsNamespacedHelper } from "@/stores/flags"
-
-// Vuex store helpers
-const flagsMapActions = flagsNamespacedHelper.mapActions([
-  "setHiddenToolbarItems",
-  "setOverlay"
-])
 
 // Component data
 const data: HomeComponentState = {
-  text: "hoge"
+  userID: "hogeUser",
+  postTitle: ""
 }
 
 export default Vue.extend({
   data(): HomeComponentState {
     return data
   },
-  created() {
-    this.setHiddenToolbarItems(true)
-    this.setOverlay(false)
-  },
   methods: {
-    ...flagsMapActions,
-    getText(): string {
-      return this.text
+    async submit() {
+      const now = dayjs().format("YYYY-MM-DD HH:mm:ss")
+      const gqlBody = `
+        mutation {
+          save (input: {
+            id: "${this.userID}",
+            title: "${this.postTitle}",
+            create_time: "${now}"
+          }) {
+            id
+          }
+        }
+      `
+      await API.graphql(graphqlOperation(gqlBody))
     }
   }
 })

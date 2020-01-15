@@ -4,7 +4,8 @@ export type AppComponentState = {
 }
 
 export type HomeComponentState = {
-  text: string
+  userID: string
+  postTitle: string
 }
 
 export type AuthComponentState = {

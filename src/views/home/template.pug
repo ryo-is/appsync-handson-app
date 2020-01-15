@@ -1,9 +1,7 @@
 v-container.home
   v-row(justify="center", align-content="center", style="height: calc(100vh - 200px);")
+    v-col(cols=4)
+      v-text-field(v-model="userID" label="userID")
+      v-text-field(v-model="postTitle" label="title")
     v-col(cols=12)
-      img(alt="Vue logo" src="../../assets/logo.png")
-    v-col(cols=12)
-      .display-1 Hello Vue
-    v-col(cols=12)
-      v-icon add
-      v-icon mdi-mouse
+      v-btn(color="indigo" depressed large dark @click="submit()") Submit
