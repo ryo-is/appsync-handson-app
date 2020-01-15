@@ -1,0 +1,17 @@
+// For authoring Nightwatch tests, see
+// http://nightwatchjs.org/guide#usage
+
+/* eslint @typescript-eslint/explicit-function-return-type: 0 */
+/* eslint @typescript-eslint/typedef: 0 */
+
+module.exports = {
+  "default e2e tests": browser => {
+    browser
+      .url(process.env.VUE_DEV_SERVER_URL)
+      .waitForElementVisible("#app", 5000)
+      .assert.elementPresent(".hello")
+      .assert.containsText("h1", "Welcome to Your Vue.js + TypeScript App")
+      .assert.elementCount("img", 1)
+      .end()
+  }
+}

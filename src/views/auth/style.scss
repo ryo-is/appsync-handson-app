@@ -1,0 +1,13 @@
+.signin {
+  .title {
+    color: #ffffff;
+  }
+
+  .reset-password-link {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
